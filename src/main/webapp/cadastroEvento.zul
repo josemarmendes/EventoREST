@@ -1,0 +1,41 @@
+<?page title="Evento" contentType="text/html;charset=UTF-8"?>
+<?meta name="viewport" content="width=device-width, initial-scale=1"?>
+<zk>
+	<div viewModel="@id('vm') @init('br.com.ifma.evento.viewmodel.IndexViewModel')">
+		<label value="Cadastro de Eventos" style="font-size: 30px"/>
+		<separator></separator>
+		<vlayout>	
+		<label value="Nome do Evento"/>
+		<textbox value="@save(vm.evento.nomeEvento)"/>
+		<separator/>
+			<label value="Selecione o Cliente"/>
+				<combobox width="190px" model="@load(vm.colClientes)" selectedItem="@bind(vm.evento.cliente)">
+                    <template name="model">
+                        <comboitem label="@load(each.nomeCliente)"/>
+                    </template>
+                </combobox>
+			<separator/>
+			<button onClick="@command('salvarEvento')" iconSclass="z-icon-check" label="Salvar"/>
+		<separator/>
+		</vlayout>
+		
+		<separator/>
+		<separator/>
+		
+		<listbox model="@load(vm.colEventos)">
+			<listhead>
+				<listheader label="Nome do Evento"/>
+				<listheader label="Cliente"/>
+			</listhead>
+		<template name="model">
+			<listitem>
+				<listcell label="@load(each.nomeEvento)"/>
+				<listcell label="@load(each.cliente.nomeCliente)"/>
+			</listitem>
+		
+		</template>
+			
+		</listbox>
+	</div>
+  
+</zk>

@@ -1,0 +1,38 @@
+<?page title="Evento" contentType="text/html;charset=UTF-8"?>
+<?meta name="viewport" content="width=device-width, initial-scale=1"?>
+<zk>
+	<div viewModel="@id('vm') @init('br.com.ifma.evento.viewmodel.IndexViewModel')">
+		<label value="Cadastro de Cliente" style="font-size: 30px"/>
+		<separator></separator>
+		<vlayout>	
+		<label value="Nome do Cliente"/>
+		<textbox value="@save(vm.cliente.nomeCliente)"/>
+		<separator/>
+		<label value="Cpf do Cliente"/>
+		<longbox value="@save(vm.cliente.cpf)" maxlength="11" width="195px"/>
+		<separator/>
+		<button onClick="@command('salvarCliente')" iconSclass="z-icon-check" label="Salvar"/>
+		
+		<separator/>
+		</vlayout>
+		
+		<separator/>
+		<separator/>
+		
+		<listbox model="@load(vm.colClientes)">
+			<listhead>
+				<listheader label="Nome"/>
+				<listheader label="Cpf"/>
+			</listhead>
+		<template name="model">
+			<listitem>
+				<listcell label="@load(each.nomeCliente)"/>
+				<listcell label="@load(each.cpf)"/>
+			</listitem>
+		
+		</template>
+			
+		</listbox>
+	</div>
+  
+</zk>
