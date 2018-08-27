@@ -21,11 +21,13 @@
 		
 		<listbox model="@load(vm.colClientes)">
 			<listhead>
+				<listheader label="Id do Cliente"/>
 				<listheader label="Nome"/>
 				<listheader label="Cpf"/>
 			</listhead>
 		<template name="model">
 			<listitem>
+				<listcell label="@load(each.id)"/>
 				<listcell label="@load(each.nomeCliente)"/>
 				<listcell label="@load(each.cpf)"/>
 			</listitem>
