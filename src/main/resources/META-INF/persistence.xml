@@ -8,11 +8,15 @@
         <class>br.com.ifma.evento.modelo.Cliente</class>
              
         <properties>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/> 
-            <property name="hibernate.show_sql" value="false"/>
-            <property name="hibernate.format_sql" value="false"/>
-            <property name="hbm2ddl.auto" value="create"/>
-        </properties>
+			<property name="hibernate.archive.autodetection" value="class, hbm"/>
+			<property name="javax.persistence.schema-generation.database.action" value="none"/>
+			<property name="javax.persistence.schema-generation.scripts.action" value="none"/>
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="false" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+            <property name="hibernate.enable_lazy_load_no_trans" value="true" />
+            <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform"/>
+		</properties>
     </persistence-unit>
     
 </persistence>
