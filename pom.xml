@@ -207,6 +207,122 @@
 					</execution>
 				</executions>
 			</plugin>
+			
+			<plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-dependency-plugin</artifactId>
+	            <version>2.10</version>
+	            <executions>
+	                <execution>
+	                    <id>unpack</id>
+	                    <phase>package</phase>
+	                    <goals>
+	                        <goal>unpack</goal>
+	                    </goals>
+	                    <configuration>
+	                    	<encoding>${project.build.sourceEncoding}</encoding>
+	                        <artifactItems>
+	                            <artifactItem>
+	                                <groupId>org.wildfly</groupId>
+	                                <artifactId>wildfly-dist</artifactId>
+	                                <version>10.1.0.Final</version>
+	                                <type>zip</type>
+	                                <overWrite>true</overWrite>
+	                                <outputDirectory>target</outputDirectory>
+	                            </artifactItem>
+	                        </artifactItems>
+	                    </configuration>
+	                </execution>
+	            </executions>
+	            <dependencies>
+	                <dependency>
+	                    <groupId>mysql</groupId>
+					    <artifactId>mysql-connector-java</artifactId>
+					    <version>5.1.39</version>
+	                </dependency>
+	            </dependencies>
+	        </plugin>
+			
+			 <!-- Wildfly Dir -->
+	        <plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-war-plugin</artifactId>
+	            <version>2.3</version>
+	            <configuration>
+	            	<encoding>${project.build.sourceEncoding}</encoding>
+	                <failOnMissingWebXml>false</failOnMissingWebXml>
+	                <outputDirectory>target/wildfly-10.1.0.Final/standalone/deployments</outputDirectory>
+	                <warName>${project.artifactId}</warName>
+	            </configuration>
+	        </plugin>
+			
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>7.6.8.v20121106</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<webAppConfig>
+						<contextPath>/${project.artifactId}</contextPath>
+						<allowDuplicateFragmentNames>true</allowDuplicateFragmentNames>
+					</webAppConfig>
+					<scanIntervalSeconds>5</scanIntervalSeconds>
+				</configuration>
+			</plugin>
+			
+			<!-- Compile java -->
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                	<encoding>${project.build.sourceEncoding}</encoding>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+			
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.2</version>
+				<executions>
+					<execution>
+						<id>webapp</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<finalName>timetable-front${packname}</finalName>
+							<encoding>${project.build.sourceEncoding}</encoding>
+							<appendAssemblyId>false</appendAssemblyId>
+							<descriptors>
+								<descriptor>src/main/assembly/webapp.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+			  <groupId>org.codehaus.mojo</groupId>
+			  <artifactId>exec-maven-plugin</artifactId>
+			  <version>1.5.0</version>
+			    <executions>
+			        <execution>
+			            <id>configure-wildfly</id>
+			            <phase>package</phase>
+			            <goals>
+			                <goal>exec</goal>
+			            </goals>
+			            <configuration>
+			            	<encoding>${project.build.sourceEncoding}</encoding>
+			                <executable>./src/main/resources/scripts/configure-wildfly.sh</executable>
+			            </configuration>
+			        </execution>
+			    </executions>
+			</plugin>
+			
 		</plugins>
 	</build>
 	<artifactId>EventoWS</artifactId>

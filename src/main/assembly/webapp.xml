@@ -18,7 +18,7 @@
 	</fileSets>
 	<files>
 		<file>
-			<source>${project.build.directory}/${project.artifactId}.war</source>
+			<source>target/wildfly-10.1.0.Final/standalone/deployments/${project.artifactId}.war</source>
 			<outputDirectory>/</outputDirectory>
 		</file>
 	</files>
