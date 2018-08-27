@@ -325,5 +325,5 @@
 			
 		</plugins>
 	</build>
-	<artifactId>EventoWS</artifactId>
+	<artifactId>EventoREST</artifactId>
 </project>

@@ -8,6 +8,7 @@
         <class>br.com.ifma.evento.modelo.Cliente</class>
              
         <properties>
+        	<!--precisa dessa tag pra criar os schemas e as tabelas  -->
 			<property name="hibernate.archive.autodetection" value="class, hbm"/>
 			<property name="javax.persistence.schema-generation.database.action" value="none"/>
 			<property name="javax.persistence.schema-generation.scripts.action" value="none"/>
