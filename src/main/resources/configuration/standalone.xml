@@ -161,6 +161,7 @@
                         <user-name>ba9b2262885c5f</user-name>
                         <password>96f22fe3</password>
                     </security>
+                    <check-valid-connection-sql>SELECT 1 FROM cliente</check-valid-connection-sql>
                     <statement>
                         <prepared-statement-cache-size>32</prepared-statement-cache-size>
                         <share-prepared-statements>true</share-prepared-statements>
