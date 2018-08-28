@@ -154,8 +154,8 @@
                     <driver>mysql</driver>
                     <transaction-isolation>TRANSACTION_READ_COMMITTED</transaction-isolation>
                     <pool>
-                        <min-pool-size>10</min-pool-size>
-                        <max-pool-size>100</max-pool-size>
+                        <min-pool-size>1</min-pool-size>
+                        <max-pool-size>20</max-pool-size>
                         <prefill>true</prefill>
                     </pool>
                     <security>
@@ -163,13 +163,14 @@
                         <password>96f22fe3</password>
                     </security>
                     <validation>
-                    	<check-valid-connection-sql>select 1 from cliente</check-valid-connection-sql>
+                        <check-valid-connection-sql>select count(*) from dual</check-valid-connection-sql>
+
+                        <background-validation>true</background-validation>
+
+                        <background-validation-millis>60000</background-validation-millis>
+
+                        <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter"/>
                     </validation>
-                    
-                    <statement>
-                        <prepared-statement-cache-size>32</prepared-statement-cache-size>
-                        <share-prepared-statements>true</share-prepared-statements>
-                    </statement>
                 </datasource>
                 
                 <drivers>
